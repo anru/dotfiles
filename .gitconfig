@@ -1,0 +1,36 @@
+[alias]
+  st = status
+  co = checkout
+  l = !gitk --all "$@"
+  br = branch
+  remove-merged = !git branch --list --format '%(refname:short)' --merged HEAD | grep -v ^master$ | xargs git branch -d
+
+[user]
+	name = Andrey Rublev
+	email = box@anru.me
+
+[push]
+  default = current
+
+[core]
+  editor = micro
+  excludesfile = ~/.gitignore
+
+[auto]
+  crlf = input
+
+[rerere]
+	enabled = true
+
+[gui]
+	tabsize = 2
+  
+#[merge "npm-merge-driver"]
+#	name = automatically merge npm lockfiles
+#	driver = npx npm-merge-driver merge %A %O %B %P
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
